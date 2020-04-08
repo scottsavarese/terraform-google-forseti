@@ -22,6 +22,10 @@ variable "server_gcs_module" {
   description = "The Forseti Server GCS module"
 }
 
+variable "server_config_module" {
+  description = "The Forseti Server Config module"
+}
+
 variable "manage_rules_enabled" {
   description = "A toggle to enable or disable the management of rules"
   type        = bool

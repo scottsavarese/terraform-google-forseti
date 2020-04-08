@@ -103,7 +103,10 @@ echo "${forseti_environment}" > /etc/profile.d/forseti_environment.sh | sudo sh
 # Download server configuration from GCS
 echo "Forseti Startup - Downloading Forseti configuration from GCS."
 gsutil cp gs://${storage_bucket_name}/configs/forseti_conf_server.yaml ${forseti_server_conf_path}
-gsutil cp -r gs://${storage_bucket_name}/rules ${forseti_home}/
+# If the rules path are in a bucket, copy them
+if echo "${rules_path}" | grep -q "^gs:"; then
+  gsutil cp -r "${rules_path}"/* ${forseti_home}/rules
+fi
 echo "Number of rules enabled: `ls ${forseti_home}/rules/*.yaml &>/dev/null | wc -l`"
 
 # Get Config Validator constraints

@@ -89,6 +89,7 @@ data "template_file" "forseti_server_startup_script" {
     policy_library_sync_enabled            = var.policy_library_sync_enabled
     policy_library_sync_gcs_directory_name = var.policy_library_sync_gcs_directory_name
     storage_bucket_name                    = var.server_gcs_module.forseti-server-storage-bucket
+    rules_path                             = var.server_config_module.rules_path
   }
 }
 
@@ -133,6 +134,7 @@ data "template_file" "forseti_server_run" {
     policy_library_sync_enabled = var.policy_library_sync_enabled
     project_id                  = var.project_id
     storage_bucket_name         = var.server_gcs_module.forseti-server-storage-bucket
+    rules_path                  = var.server_config_module.rules_path
     cloudsql_db_name            = var.cloudsql_module.forseti-cloudsql-db-name
     cloudsql_db_password        = var.cloudsql_module.forseti-cloudsql-password
     cloudsql_db_port            = var.cloudsql_module.forseti-cloudsql-db-port

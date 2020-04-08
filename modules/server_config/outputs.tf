@@ -23,3 +23,8 @@ output "forseti-server-config-md5" {
   description = "The Base64 encoded md5 hash for the server configuration file"
   value       = google_storage_bucket_object.forseti_server_config.md5hash
 }
+
+output "rules_path" {
+  description = "The path to the forseti scanner rules as found in the server configuration file"
+  value       = var.rules_path
+}

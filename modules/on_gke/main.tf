@@ -526,6 +526,7 @@ module "server_gcs" {
 module "server_rules" {
   source               = "../rules"
   server_gcs_module    = module.server_gcs
+  server_config_module = module.server_config
   org_id               = var.org_id
   domain               = var.domain
   manage_rules_enabled = var.manage_rules_enabled
