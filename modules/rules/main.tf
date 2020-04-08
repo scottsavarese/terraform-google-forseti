@@ -53,7 +53,8 @@ locals {
    */
   is_rules_in_bucket = length( regexall( "^gs://", var.server_config_module.rules_path ) ) > 0
   // The regex will capture the directory portion of the bucket path so that we can copy file to it
-  rules_directory = is_rules_in_bucket ? regex( "^gs://[^/]+/(.*)", var.server_config_module.rules_path ) : "" 
+  rules_regex = regex( "^gs://[^/]+/(.*)", var.server_config_module.rules_path )
+  rules_directory = local.is_rules_in_bucket ? local.rules_regex[0] : ""
 }
 
 data "template_file" "main" {
