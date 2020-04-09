@@ -28,7 +28,7 @@ sudo rm -rf /tmp/forseti-cai-*
 sudo gsutil cp gs://${storage_bucket_name}/configs/forseti_conf_server.yaml ${forseti_server_conf_path}
 # If rules path from config file is a bucket, then copy the rules locally
 if echo "${rules_path}" | grep -q "^gs:"; then
-  gsutil cp -r "${rules_path}"/* ${forseti_home}/rules
+  sudo gsutil cp -r "${rules_path}"/* ${forseti_home}/rules
 fi
 
 # Download the Newest Config Validator constraints from GCS.
